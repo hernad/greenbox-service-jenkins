@@ -10,7 +10,7 @@ docker pull jenkins:$DOCKER_JENKINS_VER
 
 if [ ! -d jenkins_home ] 
 then
-  rclone copy -v gdrive_bout:/jenkins_home.tar.gz .
+  rclone copy -v gdrive_bout:/jenkins_home.tar.xz .
   tar xvf jenkins_home.tar.gz
 fi
 
