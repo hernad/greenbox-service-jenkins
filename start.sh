@@ -10,8 +10,9 @@ docker pull jenkins:$DOCKER_JENKINS_VER
 
 if [ ! -d jenkins_home ] 
 then
+  echo "rclone get from gdrive_bout"
   rclone copy -v gdrive_bout:/jenkins_home.tar.xz .
-  tar xvf jenkins_home.tar.gz
+  tar xvf jenkins_home.tar.xz
 fi
 
 #docker exec -ti jenkins-1 cat /var/jenkins_home/secrets/initialAdminPassword
