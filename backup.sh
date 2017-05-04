@@ -20,5 +20,6 @@ tar cvfJ jenkins_home.tar.xz jenkins_home
 echo "start jenkins-1"
 docker start jenkins-1
 
-rclone copy -v gdrive_bout:/jenkins_home/jenkins_home.tar.xz gdrive_bout:/jenkins_home/jenkins_home.tar.xz.1
+rclone delete -v gdrive_bout:/jenkins_home/1/jenkins_home.tar.xz
+rclone copy -v gdrive_bout:/jenkins_home/jenkins_home.tar.xz gdrive_bout:/jenkins_home/1
 rclone copy -v jenkins_home.tar.xz gdrive_bout:/jenkins_home/
