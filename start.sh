@@ -2,16 +2,20 @@
 
 # https://hub.docker.com/_/jenkins/
 
-#DOCKER_JENKINS_VER="2.32.3-alpine"
-DOCKER_JENKINS_VER="2.46.1-alpine"
+DOCKER_JENKINS_VER="2.46.2-alpine"
 CONTAINER_NAME=jenkins-1
 
+RCLONE_STORAGE_LOCATION=gdrive_bout:/jenkins_home
 docker pull jenkins:$DOCKER_JENKINS_VER
 
 if [ ! -d jenkins_home ] 
 then
   echo "rclone get from gdrive_bout"
-  rclone copy -v gdrive_bout:/jenkins_home.tar.xz .
+  rclone copy -v $RCLONE_STORAGE_LOCATION/jenkins_home.tar.xz .
+  if [ $? != 0 ] ; then
+      echo "rclone ERROR"
+      exit 1
+  fi
   tar xvf jenkins_home.tar.xz
 fi
 
