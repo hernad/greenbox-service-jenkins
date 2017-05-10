@@ -1,6 +1,9 @@
 #!/bin/bash
 
-if ! rclone listremotes  | grep -q gdrive_bout
+RCLONE_REMOTE=gdrive_out
+RCLONE_STORAGE_LOCATION=$RCLONE_REMOTE:/jenkins_home
+d
+if ! rclone listremotes  | grep -q $RCLONE_REMOTE
 then
   echo "rclone mora biti konfigurisan - podesen remote gdrive_bout"
   exit 1
@@ -20,6 +23,9 @@ tar cvfJ jenkins_home.tar.xz jenkins_home
 echo "start jenkins-1"
 docker start jenkins-1
 
-rclone delete -v gdrive_bout:/jenkins_home/1/jenkins_home.tar.xz
-rclone copy -v gdrive_bout:/jenkins_home/jenkins_home.tar.xz gdrive_bout:/jenkins_home/1
-rclone copy -v jenkins_home.tar.xz gdrive_bout:/jenkins_home/
+rclone delete -v $RCLONE_STORAGE_LOCATION/1/jenkins_home.tar.xz
+rclone copy -v $RCLONE_STORAGE_LOCATION/jenkins_home.tar.xz $RCLONE_STORAGE_LOCATION/1
+rclone copy -v jenkins_home.tar.xz $RCLONE_STORAGE_LOCATION
+
+rclone lsl  $RCLONE_STORAGE_LOCATION
+
