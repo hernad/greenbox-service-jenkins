@@ -10,7 +10,6 @@ then
 fi
 
 
-
 if [ ! -d jenkins_home ]
 then
 	echo "We are not on right location: $(pwd) ?!"
