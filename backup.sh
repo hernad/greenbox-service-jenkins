@@ -1,9 +1,9 @@
 #!/bin/bash
 
-RCLONE_REMOTE=gdrive_out
+RCLONE_REMOTE=gdrive_bout
 RCLONE_STORAGE_LOCATION=$RCLONE_REMOTE:/jenkins_home
 
-if ! rclone listremotes  | grep -q $RCLONE_REMOTE
+if ! rclone listremotes | grep -q $RCLONE_REMOTE
 then
   echo "rclone mora biti konfigurisan - podesen remote gdrive_bout"
   exit 1
