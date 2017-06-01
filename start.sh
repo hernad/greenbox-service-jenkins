@@ -30,6 +30,7 @@ fi
 docker rm -f $CONTAINER_NAME
 docker run -d \
 	 --name $CONTAINER_NAME \
+	 --restart=always \
 	 -p 8080:8080 -p 50000:50000 \
 	 -v $(pwd)/jenkins_home:/var/jenkins_home \
 	 --env JAVA_OPTS=-Dhudson.footerURL=http://jenkins.bring.out.ba \
